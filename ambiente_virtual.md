@@ -12,4 +12,36 @@
 > pyinstaller --noconfirm --onefile --windowed --icon "assets\app.ico" gui.py
 
 
+### Versionamento no ambiente virtual:
+
+**GitHub CLI (gh), resolve autenticação sem precisar mexer manualmente com SSH.**
+
+> GitHub.com
+
+```
+O GitHub CLI cria um token com permissões básicas (repo, workflow etc).
+Excluir repositório é uma permissão separada, chamada delete_repo, e não vem por padrão (por segurança).
+```
+> gh auth login
+- Se autenticar por gh, o token não tem permissão para deletar repositórios via gh.
+
+```
+Usando gh, não precisa de SSH ( se quiser )
+Pode usar HTTPS + token automaticamente, o que evita dor de cabeça com chave pública.
+```
+#### Para deleção de repositórios:
+
+> gh auth refresh -h github.com -s delete_repo
+
+Autorize adicção de permissão **'delete_repo'** ao seu token atual.
+
+> gh repo delete userdanixdev/project_yt_videos_leg --yes
+
+**Logo pode usar novamente:**
+
+>gh repo create project_yt_videos_leg --source=. --public --push
+
+
+
+
 

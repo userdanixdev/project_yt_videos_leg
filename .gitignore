@@ -1,0 +1,64 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambiente virtual
+.env
+.venv
+venv/
+env/
+ytsub/
+conda-meta/
+
+# =========================
+# Build / PyInstaller
+# =========================
+build/
+dist/
+*.spec
+
+# Executáveis gerados
+*.exe
+
+# =========================
+# Modelos Whisper / Transformers
+# =========================
+# Cache padrão do HuggingFace
+.cache/
+huggingface/
+**/models--*/
+
+# Whisper cache
+~/.cache/whisper/
+~/.cache/huggingface/
+
+# =========================
+# Arquivos temporários
+# =========================
+*.log
+*.tmp
+*.bak
+
+# =========================
+# Saídas do programa
+# =========================
+video_traduzido/
+*.srt
+*.mp4
+*.mkv
+*.webm
+
+# =========================
+# Sistema
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/

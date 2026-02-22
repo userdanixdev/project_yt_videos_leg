@@ -6,13 +6,19 @@
 ![License](https://img.shields.io/badge/License-Educational-lightgrey)
 ![Platform](https://img.shields.io/badge/Platform-Windows-blue)
 
-Aplicação Desktop desenvolvida em Python para:
+### Objetivo do Projeto:
+
+Atualmente, grande parte das aulas e conteúdos educacionais disponíveis online, especialmente nas áreas de tecnologia e programação que são produzidos em inglês e muitas vezes não possuem legendas em português. Isso pode dificultar o aprendizado para estudantes que não dominam totalmente o idioma.
+
+A Aplicação Desktop desenvolvida em Python com o objetivo de:
 
 - Baixar aulas do YouTube
 - Transcrever áudio com IA (Whisper)
 - Traduzir automaticamente para Português
 - Gerar legenda `.srt`
 - Organizar arquivos automaticamente
+
+*A proposta é facilitar o acesso ao conhecimento, permitindo que usuários assistam a aulas em inglês com suporte de legendas traduzidas automaticamente, tornando o aprendizado mais acessível e inclusivo.*
 
 ---
 
@@ -113,10 +119,12 @@ winget install Gyan.FFmpeg
 > Erro: mel_filters.npz not found
 
 **PyInstaller não incluía arquivos internos do Whisper.**
+```
 
 **Solução:**
 - Criado gui.spec incluindo:
     > datas=[(whisper_assets, 'whisper/assets')]
+```
 
 **Erro 401 HuggingFace**
 ```
@@ -135,11 +143,6 @@ Causa:
 
 Solução:
 > Salvar como mesmo nome do vídeo:
-
-```
-Aula.mp4
-Aula.srt
-```
 
 **BASE_DIR NOT FOUND**
 
@@ -185,6 +188,13 @@ O download deve respeitar:
 - Termos de uso do YouTube
 - Uso educacional ou autorizado
 
-👨‍💻 Autor
+👨‍💻 Autor:
+
+**Daniel Martins França**  
+
+## 📬 Contato:
+
+- 📧 Email: [f.daniel.m@gmail.com](mailto:f.daniel.m@gmail.com)  
+- 💼 LinkedIn: [www.linkedin.com/in/danixdev](https://www.linkedin.com/in/danixdev)  
 
 *Projeto desenvolvido para fins educacionais e estudo de processamento de áudio, IA aplicada, empacotamento de aplicações e engenharia de software desktop*

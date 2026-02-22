@@ -189,6 +189,23 @@ O download deve respeitar:
 - Termos de uso do YouTube
 - Uso educacional ou autorizado
 
+## 📥 Download
+
+Baixe a versão mais recente em:
+
+- https://github.com/userdanixdev/project_yt_videos_leg/releases
+
+Ou vá direto para a última versão:
+[Download YT Sub v1.0.0](https://github.com/userdanixdev/project_yt_videos_leg/releases/latest)
+
+**Requisitos**
+
+- Windows 10+
+- FFmpeg instalado  
+ - Instalar via:
+     > winget install Gyan.FFmpeg
+
+
 👨‍💻 Autor:
 
 **Daniel Martins França**  

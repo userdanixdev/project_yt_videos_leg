@@ -85,26 +85,15 @@ Desktop/
 
 ### 🚀 Como Executar o Projeto
 
-## 1️⃣ Criar ambiente
+*Crie uma ambiente virtual e instale as dependências necessárias*
 
-```
-conda create -n yt_sub python=3.10
-conda activate yt_sub
-
-Instalar dependências
-pip install yt-dlp openai-whisper torch deep-translator pyinstaller
-
-Instalar FFmpeg (Windows)
-winget install Gyan.FFmpeg
-
-Instalar FFmpeg (Windows)
-winget install Gyan.FFmpeg
-```
 
 #### ▶ Executar versão Python
+
 > python gui.py
 
 #### 📦 Gerar Executável (.exe)
+
 > pyinstaller gui.spec
 
 #### 📊 Performance
@@ -122,7 +111,7 @@ winget install Gyan.FFmpeg
 **PyInstaller não incluía arquivos internos do Whisper.**
 ```
 
-**Solução:**
+Solução:
 - Criado gui.spec incluindo:
     > datas=[(whisper_assets, 'whisper/assets')]
 ```
@@ -197,14 +186,6 @@ Baixe a versão mais recente em:
 
 Ou vá direto para a última versão:
 [Download YT Sub v1.0.0](https://github.com/userdanixdev/project_yt_videos_leg/releases/latest)
-
-**Requisitos**
-
-- Windows 10+
-- FFmpeg instalado  
- - Instalar via:
-     > winget install Gyan.FFmpeg
-
 
 👨‍💻 Autor:
 

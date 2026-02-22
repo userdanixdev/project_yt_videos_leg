@@ -3,6 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Whisper](https://img.shields.io/badge/OpenAI-Whisper-green)
 ![PyInstaller](https://img.shields.io/badge/Packaging-PyInstaller-orange)
+[![Conda](https://img.shields.io/badge/Conda-Environment-44A833?logo=anaconda&logoColor=white)](https://docs.conda.io/)
 ![License](https://img.shields.io/badge/License-Educational-lightgrey)
 ![Platform](https://img.shields.io/badge/Platform-Windows-blue)
 

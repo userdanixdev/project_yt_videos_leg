@@ -70,6 +70,22 @@ def chunk_text(text: str, max_chars: int = 420) -> list[str]:
         chunks.append(" ".join(cur))
     return chunks
 
+def get_yt_info(url: str) -> tuple[str, str]:
+    """
+    Retorna (video_id, title) usando yt-dlp sem baixar.
+    """
+    # -q: quiet, --no-warnings: menos ruído
+    # --print: imprime campos; 1 linha por campo
+    p = subprocess.run(
+        ["yt-dlp", "-q", "--no-warnings", "--skip-download", "--print", "%(id)s\n%(title)s", url],
+        capture_output=True,
+        text=True,
+        check=True
+    )
+    lines = [l.strip() for l in (p.stdout or "").splitlines() if l.strip()]
+    if len(lines) < 2:
+        raise RuntimeError("Não consegui obter ID/Título via yt-dlp.")
+    return lines[0], lines[1]
 
 # ============================
 # Models
@@ -91,34 +107,37 @@ def ensure_models(status_label: tk.Label) -> None:
 # ============================
 
 def download_youtube(url: str, status_label: tk.Label) -> Path:
+    status_label.config(text="Lendo informações do vídeo (yt-dlp)...")
+    video_id, title = get_yt_info(url)
+
+    # Pasta SEMPRE segura (ID não tem caracteres inválidos)
+    aula_folder = BASE_DIR / video_id
+    aula_folder.mkdir(parents=True, exist_ok=True)
+
     status_label.config(text="Baixando vídeo (yt-dlp)...")
 
-    # baixa na BASE_DIR e depois move pra subpasta
-    outtmpl = str(BASE_DIR / "%(title).140s [%(id)s].%(ext)s")
+    # Nome de arquivo seguro (sem título cru)
+    # Se quiser colocar título, use sanitize_filename(title), mas eu recomendo manter simples:
+    outtmpl = str(aula_folder / f"{video_id}.%(ext)s")
+
     run([
         "yt-dlp",
         "-f", "bv*+ba/best",
         "--merge-output-format", "mp4",
+        "--windows-filenames",              #  evita ":" "|" etc. no Windows
         "-o", outtmpl,
         url
     ])
 
-    videos = sorted(BASE_DIR.glob("*.mp4"), key=lambda p: p.stat().st_mtime, reverse=True)
-    if not videos:
-        raise RuntimeError("Download terminou, mas não encontrei .mp4 em 'video_traduzido'.")
+    video_path = aula_folder / f"{video_id}.mp4"
+    if not video_path.exists():
+        # fallback: procura qualquer mp4 dentro da pasta do ID
+        mp4s = sorted(aula_folder.glob("*.mp4"), key=lambda p: p.stat().st_mtime, reverse=True)
+        if not mp4s:
+            raise RuntimeError("Download terminou, mas não encontrei .mp4 na pasta do vídeo.")
+        video_path = mp4s[0]
 
-    video_path = videos[0]
-
-    folder_name = sanitize_filename(video_path.stem)
-    aula_folder = BASE_DIR / folder_name
-    aula_folder.mkdir(parents=True, exist_ok=True)
-
-    new_video_path = aula_folder / video_path.name
-    if new_video_path.exists():
-        new_video_path = aula_folder / f"{video_path.stem}_novo{video_path.suffix}"
-
-    video_path.rename(new_video_path)
-    return new_video_path
+    return video_path
 
 
 def transcribe_and_translate_to_srt(video_path: Path, status_label: tk.Label) -> Path:

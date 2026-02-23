@@ -27,7 +27,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
+          base: master
           title: "Merge dev into main"
           body: "PR automático: dev -> main"
           branch: "pr/dev-to-main"

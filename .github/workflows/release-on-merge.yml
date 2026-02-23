@@ -3,7 +3,7 @@ name: Build EXE and Release (only if VERSION changed)
 on:
   pull_request:
     types: [closed]
-    branches: [main]
+    branches: [master]
 
 permissions:
   contents: write
